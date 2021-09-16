@@ -1,6 +1,9 @@
 package com.jiangwei.demo;
 
+import com.jiangwei.demo.dao.UserDao;
+import com.jiangwei.demo.entity.UserEntity;
 import com.jiangwei.demo.producer.RedisPruducer;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @SpringBootApplication(exclude = {RabbitAutoConfiguration.class})
 @RestController
+@MapperScan("com.jiangwei.demo.dao")
 public class DemoApplication {
 
     @Autowired
@@ -30,6 +34,15 @@ public class DemoApplication {
     public String hello(@PathVariable String msg) {
         redisPruducer.produce(msg);
         return "hello world";
+    }
+
+    @Autowired
+    UserDao userDao;
+
+    @GetMapping("/user/{id}")
+    public UserEntity hello(@PathVariable Integer id) {
+
+        return userDao.selectByPrimaryKey(id);
     }
 
 }

@@ -15,7 +15,7 @@ import java.util.UUID;
  * @Version: 1.0
  * @Description:
  */
-@Component
+//@Component
 public class AmqpSender {
 
 

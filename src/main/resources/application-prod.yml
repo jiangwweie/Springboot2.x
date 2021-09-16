@@ -20,12 +20,12 @@ spring:
     password: root
   redis:
     host: ${demo.host}
-    password: cloud123.mapgis
+    password: 691216
     port: 6379
   datasource:
     url: jdbc:mysql://${demo.host}:3306/cristina
     username: root
-    password: 691216
+    password: Jwayy691216
     driver-class-name: com.mysql.jdbc.Driver
   application:
     name: demo2021
@@ -33,6 +33,7 @@ spring:
 
 mybatis:
   mapper-locations: classpath*:com/jiangwei/demo/mapper/*.xml
+
 
 logging:
   level:
