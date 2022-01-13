@@ -1,8 +1,10 @@
 # custom config
 demo:
-  host: localhost
   rabbitmq:
     enabled: false
+  binance:
+    apiKey: Uixyi4dlW7KP34ayGRECbLY9RNE7XIvoM4ADkQDktOo1IbTaJQp1j5x77N9kg6Bc
+    secretKey: HLmPGiU8aGJ492SHYd8fhC6xa1S8yCCn3S4YYqlSS0JVKKP9ZUnI55mKJPERaw7T
 
 
 
@@ -14,18 +16,18 @@ server:
 
 spring:
   rabbitmq:
-    host: ${demo.host}
+    host: 49.235.227.150
     port: 5672
     username: root
     password: root
   redis:
-    host: ${demo.host}
-    password: cloud123.mapgis
+    host: 49.235.227.150
+    password: 691216
     port: 6379
   datasource:
-    url: jdbc:mysql://${demo.host}:3306/cristina
+    url: jdbc:mysql://49.235.227.150:3306/cristina
     username: root
-    password: 691216
+    password: '!QAZ2wsx'
     driver-class-name: com.mysql.jdbc.Driver
   application:
     name: demo2021
