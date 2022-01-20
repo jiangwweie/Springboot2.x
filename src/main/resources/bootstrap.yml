@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: demo2021
+  profiles:
+    active: dev
+
+---
+spring:
+  profiles: dev
+  # nacos-config的dataId组成为：
+  #  ${spring.cloud.nacos.config.prefix}-${spring.profile.active}.${spring.cloud.nacos.config.file-extension}
+  cloud:
+    nacos:
+      config:
+        server-addr: halo.com:8848
+        # 对应nacos的dataId ,否则默认application.name，优先级最高
+        prefix: demo2021
+        # 格式类型
+        file-extension: yml
+        group: jiangwei
+        namespace: dev
+        # 优先级次低
+        extension-configs[0]:
+          dataId: ext-config.yml
+          group: jiangwei
+          refresh: true
+        # 优先级最低
+        shared-configs[0]:
+          dataId: share-config.yml
+          group: jiangwei
+          refresh: true
+        enable-remote-sync-config: true
+  main:
+    allow-bean-definition-overriding: true
