@@ -1,6 +1,6 @@
 spring:
   application:
-    name: demo2021
+    name: demo
   profiles:
     active: dev
 

@@ -26,13 +26,16 @@ public class AmqpSender {
     private BrokerMessageLogDao brokerMessageLogMapper;
 
     public void send(Object obj) throws Exception {
-        //rabbitTemplate.setConfirmCallback(callback);
+        rabbitTemplate.setConfirmCallback(callback);
         //消息唯一id
         CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
         //投递到一个不存在的exchange时候，会触发定时任务retry
         rabbitTemplate.convertAndSend("order-exchange", "order.*", obj, correlationData);
     }
 
+    /**
+     * confirmCallBack
+     */
     final RabbitTemplate.ConfirmCallback callback = (correlationData, ack, s) -> {
         System.out.println("correlationData:  " + correlationData);
         String messageId = correlationData.getId();
