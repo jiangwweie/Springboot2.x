@@ -1,5 +1,8 @@
 package com.jiangwei.demo.fsm;
 
+import java.util.EnumSet;
+import java.util.Optional;
+
 /**
  * @author jiangwei
  * @date 2022/8/12
@@ -7,6 +10,7 @@ package com.jiangwei.demo.fsm;
 public enum Status {
 
 
+    初始状态(0, "初始状态为空"),
     /**
      * 待发送直连
      */
@@ -27,11 +31,11 @@ public enum Status {
     /**
      * 支付成功
      */
-    成功(5, "成功"),
+    成功(5, "支付成功"),
     /**
      * 支付失败
      */
-    失败(6, "失败"),
+    失败(6, "支付失败"),
 
     /**
      * 退票
@@ -74,5 +78,10 @@ public enum Status {
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+
+    public static Optional<Status> fromCode(int statusCode){
+        return EnumSet.allOf(Status.class).stream().filter(t->t.code == statusCode).findFirst();
     }
 }
